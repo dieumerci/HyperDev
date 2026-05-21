@@ -58,9 +58,12 @@ is open.
 - **Multi-turn history is sent verbatim to the model.** Fine at this scale;
   a real product would need a token-budget strategy (sliding window or
   summarisation) once conversations grow long.
-- **User-supplied API key.** Stored in `sessionStorage` on the client and
-  posted as a hidden form field. Never logged, never persisted server-side.
-  This was the optional "reduce cost during review" hint in the brief.
+- **API keys.** The deployed Worker has a working Anthropic key set as a
+  Cloudflare secret so reviewers can try the app without provisioning their
+  own. A "Use your own API key" toggle in the prompt bar takes precedence
+  when set — that value is kept in `sessionStorage`, posted as a hidden form
+  field, and never logged or persisted server-side. All keys and the Neon
+  database will be rotated/decommissioned once this take-home is reviewed.
 - **Rate limiting** is intentionally not implemented locally — production would
   use Cloudflare's built-in rate limiting binding or a Durable Object, not
   in-memory state in a stateless Worker.

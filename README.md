@@ -4,6 +4,13 @@ A small full-stack chat app that talks to Claude and keeps a history of past
 conversations per visitor. Built on React Router (the framework formerly known
 as Remix), deployed to Cloudflare Workers, backed by Neon Postgres.
 
+> **For reviewers:** the deployed app at
+> https://hyperdev.dieumercikaz.workers.dev is wired up with a working
+> Anthropic API key so you can try it without provisioning your own. There is
+> also a "Use your own API key" toggle in the prompt bar if you'd prefer. The
+> embedded keys and database will be rotated/decommissioned after this
+> take-home is reviewed.
+
 ## Stack
 
 - React Router 7 (framework mode) + React 19 + TypeScript

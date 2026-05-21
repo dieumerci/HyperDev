@@ -17,25 +17,37 @@ export function ApiKeyField() {
   }, [value]);
 
   return (
-    <div className="flex items-center gap-2 text-xs text-neutral-500">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="underline-offset-2 hover:underline"
-      >
-        {value ? "Using your API key" : "Use your own API key"}
-      </button>
-      {open && (
-        <input
-          name="apiKey"
-          type="password"
-          autoComplete="off"
-          spellCheck={false}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="sk-ant-..."
-          className="flex-1 rounded border border-neutral-300 px-2 py-1 text-xs"
-        />
+    <div className="flex items-center justify-end gap-2">
+      {open ? (
+        <>
+          <input
+            name="apiKey"
+            type="password"
+            autoComplete="off"
+            spellCheck={false}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="sk-ant-..."
+            aria-label="Your Anthropic API key"
+            className="flex-1 rounded border border-neutral-300 px-2 py-1 text-xs"
+          />
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="text-xs text-neutral-500 hover:text-neutral-900"
+          >
+            Done
+          </button>
+        </>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          title={value ? "Using your API key" : "Use your own API key"}
+          className="text-xs text-neutral-400 hover:text-neutral-700"
+        >
+          {value ? "key: yours" : "key: server"}
+        </button>
       )}
       {!open && value && <input type="hidden" name="apiKey" value={value} />}
     </div>
